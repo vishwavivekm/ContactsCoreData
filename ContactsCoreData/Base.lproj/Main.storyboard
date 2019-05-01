@@ -22,18 +22,50 @@
                                 <rect key="frame" x="0.0" y="32" width="375" height="667"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="contactsCell" rowHeight="49" id="3Or-Zy-cfL">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="49"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ContactTableViewCell" rowHeight="100" id="3Or-Zy-cfL" customClass="ContactTableViewCell" customModule="ContactsCoreData" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="3Or-Zy-cfL" id="YX4-CS-zp7">
-                                            <rect key="frame" x="0.0" y="0.0" width="342" height="48.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="99.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3qP-nr-qkk">
+                                                    <rect key="frame" x="108" y="11" width="158" height="30"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RpS-Vx-gBV">
+                                                    <rect key="frame" x="108" y="58" width="158" height="15"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon" translatesAutoresizingMaskIntoConstraints="NO" id="Otg-xW-dur">
+                                                    <rect key="frame" x="0.0" y="5" width="91" height="89"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="91" id="Cen-Hu-FIE"/>
+                                                        <constraint firstAttribute="height" constant="89" id="sNF-Sf-TWd"/>
+                                                    </constraints>
+                                                </imageView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="Otg-xW-dur" firstAttribute="leading" secondItem="YX4-CS-zp7" secondAttribute="leading" id="CN3-dB-vah"/>
+                                                <constraint firstItem="Otg-xW-dur" firstAttribute="top" secondItem="YX4-CS-zp7" secondAttribute="top" constant="5" id="oHZ-xn-USn"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="CQp-TB-VsP" kind="presentation" id="zcY-HE-hjO"/>
+                                            <outlet property="contactMobile" destination="RpS-Vx-gBV" id="Qt3-PE-S79"/>
+                                            <outlet property="contactName" destination="3qP-nr-qkk" id="adD-iT-1PD"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="TAF-ge-k5j"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="zJk-R9-6iB"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -80,7 +112,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="3cp-Wj-ESv">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon" translatesAutoresizingMaskIntoConstraints="NO" id="3cp-Wj-ESv">
                                 <rect key="frame" x="120.5" y="118" width="134" height="134"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="134" id="FNQ-87-2fa"/>
@@ -170,7 +202,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="DiT-t3-SGf">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon" translatesAutoresizingMaskIntoConstraints="NO" id="DiT-t3-SGf">
                                 <rect key="frame" x="120.5" y="118" width="134" height="134"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="134" id="ZH4-de-er1"/>
@@ -229,7 +261,7 @@
                         <viewLayoutGuide key="safeArea" id="xm5-ne-An3"/>
                     </view>
                     <connections>
-                        <outlet property="contactImage" destination="DiT-t3-SGf" id="64T-Ol-VqJ"/>
+                        <outlet property="contactImage" destination="DiT-t3-SGf" id="52c-38-dZE"/>
                         <outlet property="firstNameTF" destination="wk5-kN-nXa" id="xXm-ap-BHT"/>
                         <outlet property="lastNameTF" destination="2Zf-tm-nVg" id="92A-cg-O9v"/>
                         <outlet property="mobileTF" destination="SsI-qq-qx2" id="doS-DQ-auk"/>
@@ -258,4 +290,7 @@
             <point key="canvasLocation" x="-84" y="-570.76461769115451"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="icon" width="230" height="218"/>
+    </resources>
 </document>

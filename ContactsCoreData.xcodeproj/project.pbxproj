@@ -17,6 +17,7 @@
 		044B68EB2276ECB3000C9BD4 /* ContactsCoreDataUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044B68EA2276ECB3000C9BD4 /* ContactsCoreDataUITests.swift */; };
 		044B68F92276EDC2000C9BD4 /* AddContactViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044B68F82276EDC2000C9BD4 /* AddContactViewController.swift */; };
 		044B68FB2276F666000C9BD4 /* UpdateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044B68FA2276F666000C9BD4 /* UpdateViewController.swift */; };
+		045A81292279C7F8007C7C79 /* ContactTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045A81282279C7F8007C7C79 /* ContactTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,7 @@
 		044B68EC2276ECB3000C9BD4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		044B68F82276EDC2000C9BD4 /* AddContactViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddContactViewController.swift; sourceTree = "<group>"; };
 		044B68FA2276F666000C9BD4 /* UpdateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateViewController.swift; sourceTree = "<group>"; };
+		045A81282279C7F8007C7C79 /* ContactTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +107,7 @@
 			children = (
 				044B68C72276ECB1000C9BD4 /* AppDelegate.swift */,
 				044B68C92276ECB1000C9BD4 /* ViewController.swift */,
+				045A81282279C7F8007C7C79 /* ContactTableViewCell.swift */,
 				044B68F82276EDC2000C9BD4 /* AddContactViewController.swift */,
 				044B68FA2276F666000C9BD4 /* UpdateViewController.swift */,
 				044B68CB2276ECB1000C9BD4 /* Main.storyboard */,
@@ -265,6 +268,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				045A81292279C7F8007C7C79 /* ContactTableViewCell.swift in Sources */,
 				044B68D02276ECB1000C9BD4 /* ContactsCoreData.xcdatamodeld in Sources */,
 				044B68F92276EDC2000C9BD4 /* AddContactViewController.swift in Sources */,
 				044B68CA2276ECB1000C9BD4 /* ViewController.swift in Sources */,

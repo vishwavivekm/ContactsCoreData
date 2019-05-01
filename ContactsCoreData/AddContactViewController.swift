@@ -10,7 +10,7 @@ import UIKit
 import CoreData
 
 
-class AddContactViewController: UIViewController, UIImagePickerControllerDelegate {
+class AddContactViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     var appDelegate:AppDelegate!
     var managedObjectContext:NSManagedObjectContext!
@@ -23,35 +23,61 @@ class AddContactViewController: UIViewController, UIImagePickerControllerDelegat
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         contactImage.layer.cornerRadius = contactImage.frame.size.width/2
         
         appDelegate = UIApplication.shared.delegate as! AppDelegate
         managedObjectContext = appDelegate.persistentContainer.viewContext
         
-        
+        tapGesture()
+    }
+    // Tap Gesture for Image picking
+    
+    func tapGesture(){
+        var imageTap = UIGestureRecognizer.init(target: self, action: #selector(onTapImage(sender:)))
+        contactImage.addGestureRecognizer(imageTap)
+        contactImage.isUserInteractionEnabled = true
+    }
+    // Getting Image from Image picker
+    func imagePicker(){
+        let picker = UIImagePickerController()
+        picker.allowsEditing = true
+        picker.sourceType = .photoLibrary
+        picker.delegate = self
+        present(picker, animated: true, completion: nil)
         
     }
+    
+    @objc func onTapImage(sender:UITapGestureRecognizer)
+    {
+        if sender.view as? UIImageView != nil
+        {
+            imagePicker()
+        }
+    }
+   
     @IBAction func saveContact(_ sender: Any) {
         
+        contactsEntity = NSEntityDescription.entity(forEntityName: "Contacts", in: managedObjectContext)
         let managedObject = NSManagedObject(entity: contactsEntity, insertInto: managedObjectContext)
-        managedObject.setValue("\(firstNameTF.text)", forKey: "firstName" )
-        managedObject.setValue("\(lastNameTF.text)", forKey: "lastName" )
-        managedObject.setValue("\(mobileTF.text)", forKey: "mobile" )
-        
+        managedObject.setValue(firstNameTF.text, forKey: "firstName")
+        managedObject.setValue(lastNameTF.text, forKey: "lastName")
+        managedObject.setValue(Int64(mobileTF.text!), forKey: "mobile")
+        if let imageData = contactImage.image?.jpegData(compressionQuality: 1.0){
+        managedObject.setValue(imageData, forKey: "contactImage")
+        }
         do{
             try managedObjectContext.save()
         }catch{
-            error
+            print(error)
         }
+        
+        dismiss(animated: true, completion: nil)
+    
         
     }
     
     @IBAction func cancelSaveAction(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
-    
-    
-    
     
 }
