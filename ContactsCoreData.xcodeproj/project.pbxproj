@@ -82,6 +82,34 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0441C9C7227B030800833FE8 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				044B68C92276ECB1000C9BD4 /* ViewController.swift */,
+				045A81282279C7F8007C7C79 /* ContactTableViewCell.swift */,
+				044B68F82276EDC2000C9BD4 /* AddContactViewController.swift */,
+				044B68FA2276F666000C9BD4 /* UpdateViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		0441C9C8227B033000833FE8 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				044B68CB2276ECB1000C9BD4 /* Main.storyboard */,
+				044B68D32276ECB3000C9BD4 /* LaunchScreen.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		0441C9C9227B033F00833FE8 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				044B68CE2276ECB1000C9BD4 /* ContactsCoreData.xcdatamodeld */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		044B68BB2276ECB1000C9BD4 = {
 			isa = PBXGroup;
 			children = (
@@ -106,15 +134,11 @@
 			isa = PBXGroup;
 			children = (
 				044B68C72276ECB1000C9BD4 /* AppDelegate.swift */,
-				044B68C92276ECB1000C9BD4 /* ViewController.swift */,
-				045A81282279C7F8007C7C79 /* ContactTableViewCell.swift */,
-				044B68F82276EDC2000C9BD4 /* AddContactViewController.swift */,
-				044B68FA2276F666000C9BD4 /* UpdateViewController.swift */,
-				044B68CB2276ECB1000C9BD4 /* Main.storyboard */,
+				0441C9C7227B030800833FE8 /* Controllers */,
+				0441C9C8227B033000833FE8 /* View */,
 				044B68D12276ECB3000C9BD4 /* Assets.xcassets */,
-				044B68D32276ECB3000C9BD4 /* LaunchScreen.storyboard */,
 				044B68D62276ECB3000C9BD4 /* Info.plist */,
-				044B68CE2276ECB1000C9BD4 /* ContactsCoreData.xcdatamodeld */,
+				0441C9C9227B033F00833FE8 /* Model */,
 			);
 			path = ContactsCoreData;
 			sourceTree = "<group>";
