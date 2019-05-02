@@ -22,6 +22,7 @@ class ViewController: UIViewController {
     var contactName:[String] = []
     var contactLastName:[String] = []
     var contactMobile:[Int64] = []
+    var contactImage:[UIImage] = []
     
     var managedObjectContext:NSManagedObjectContext!
     var appDelegate = UIApplication.shared.delegate as! AppDelegate
@@ -48,6 +49,7 @@ class ViewController: UIViewController {
         contactName = []
         contactLastName = []
         contactMobile = []
+        contactImage = []
         
         let contactFetch = NSFetchRequest<NSFetchRequestResult>(entityName: "Contacts")
         do{
@@ -57,6 +59,12 @@ class ViewController: UIViewController {
                 contactName.append(contactManagedObject.value(forKey: "firstName") as! String)
                  contactLastName.append(contactManagedObject.value(forKey: "lastName") as! String)
                 contactMobile.append(contactManagedObject.value(forKey: "mobile") as! Int64)
+                
+                if let imageData = contactManagedObject.value(forKey: "contactImage")
+                {
+                    contactImage.append(UIImage(data: imageData as! Data)!)
+                }
+                
             }
             
         }catch{
@@ -79,6 +87,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource{
         let cell = contactsTable.dequeueReusableCell(withIdentifier: "ContactTableViewCell", for: indexPath) as! ContactTableViewCell
         cell.contactMobile.text = "\(contactMobile[indexPath.row])"
         cell.contactName.text = contactName[indexPath.row]
+        cell.contactImage.image = contactImage[indexPath.row]
         
         return cell
     }
@@ -113,6 +122,7 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource{
             updateContact.firstNameUpdateTF.text = self.contactName[indexPath.row]
             updateContact.lastNameUpdateTF.text = self.contactLastName[indexPath.row]
             updateContact.mobileUpdateTF.text = "\(self.contactMobile[indexPath.row])"
+            updateContact.updateImage.image = self.contactImage[indexPath.row]
             
             data = self.contactName[indexPath.row]
         }

@@ -33,7 +33,7 @@ class AddContactViewController: UIViewController, UIImagePickerControllerDelegat
     // Tap Gesture for Image picking
     
     func tapGesture(){
-        var imageTap = UIGestureRecognizer.init(target: self, action: #selector(onTapImage(sender:)))
+        var imageTap = UITapGestureRecognizer.init(target: self, action: #selector(onTapImage(sender:)))
         contactImage.addGestureRecognizer(imageTap)
         contactImage.isUserInteractionEnabled = true
     }
@@ -54,7 +54,14 @@ class AddContactViewController: UIViewController, UIImagePickerControllerDelegat
             imagePicker()
         }
     }
-   
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        
+        let picked = info[UIImagePickerController.InfoKey.editedImage]
+        contactImage.image = picked as? UIImage
+        dismiss(animated: true, completion: nil)
+        
+    }
+    
     @IBAction func saveContact(_ sender: Any) {
         
         contactsEntity = NSEntityDescription.entity(forEntityName: "Contacts", in: managedObjectContext)
@@ -63,7 +70,7 @@ class AddContactViewController: UIViewController, UIImagePickerControllerDelegat
         managedObject.setValue(lastNameTF.text, forKey: "lastName")
         managedObject.setValue(Int64(mobileTF.text!), forKey: "mobile")
         if let imageData = contactImage.image?.jpegData(compressionQuality: 1.0){
-        managedObject.setValue(imageData, forKey: "contactImage")
+            managedObject.setValue(imageData, forKey: "contactImage")
         }
         do{
             try managedObjectContext.save()
@@ -72,7 +79,7 @@ class AddContactViewController: UIViewController, UIImagePickerControllerDelegat
         }
         
         dismiss(animated: true, completion: nil)
-    
+        
         
     }
     

@@ -10,7 +10,7 @@ import UIKit
 import CoreData
 
 
-class UpdateViewController: UIViewController {
+class UpdateViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     @IBOutlet weak var updateImage: UIImageView!
     @IBOutlet weak var firstNameUpdateTF: UITextField!
@@ -18,7 +18,7 @@ class UpdateViewController: UIViewController {
     @IBOutlet weak var mobileUpdateTF: UITextField!
     
     var managedObjectContext:NSManagedObjectContext!
-    var appDelegate:UIApplicationDelegate!
+    var appDelegate:AppDelegate!
     
     
     
@@ -27,9 +27,41 @@ class UpdateViewController: UIViewController {
         updateImage.layer.cornerRadius = updateImage.frame.size.width/2
         
         appDelegate = UIApplication.shared.delegate as! AppDelegate
-//        managedObjectContext = appDelegate.persistentContainer.viewContext
-         managedObjectContext = ((UIApplication.shared.delegate) as! AppDelegate).persistentContainer.viewContext
+         managedObjectContext = appDelegate.persistentContainer.viewContext
+        
+        tapGesture()
+        
     }
+    func tapGesture(){
+        var imageTap = UITapGestureRecognizer.init(target: self, action: #selector(onTapImage(sender:)))
+        updateImage.addGestureRecognizer(imageTap)
+        updateImage.isUserInteractionEnabled = true
+    }
+    
+    func imagePicker(){
+        let picker = UIImagePickerController()
+        picker.allowsEditing = true
+        picker.sourceType = .photoLibrary
+        picker.delegate = self
+        present(picker, animated: true, completion: nil)
+        
+    }
+    
+    @objc func onTapImage(sender:UITapGestureRecognizer)
+    {
+        if sender.view as? UIImageView != nil
+        {
+            imagePicker()
+        }
+    }
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        
+        let picked = info[UIImagePickerController.InfoKey.editedImage]
+        updateImage.image = picked as? UIImage
+        dismiss(animated: true, completion: nil)
+    }
+    
+    
     
 
     @IBAction func updateContact(_ sender: Any) {
@@ -43,6 +75,9 @@ class UpdateViewController: UIViewController {
                 updateContact.setValue(firstNameUpdateTF.text, forKey: "firstName")
                 updateContact.setValue(lastNameUpdateTF.text, forKey: "lastName")
                 updateContact.setValue(Int64(mobileUpdateTF.text!), forKey: "mobile")
+                if let updateImageData = updateImage.image?.jpegData(compressionQuality: 1.0){
+                    updateContact.setValue(updateImageData, forKey: "contactImage")
+                }
             }
             try managedObjectContext.save()
             

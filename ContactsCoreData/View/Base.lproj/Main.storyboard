@@ -57,6 +57,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="contactImage" destination="Otg-xW-dur" id="Ejj-xO-bbE"/>
                                             <outlet property="contactMobile" destination="RpS-Vx-gBV" id="Qt3-PE-S79"/>
                                             <outlet property="contactName" destination="3qP-nr-qkk" id="adD-iT-1PD"/>
                                         </connections>
